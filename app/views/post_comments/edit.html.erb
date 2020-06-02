@@ -1,0 +1,19 @@
+<h1>Edit post</h1>
+
+<%= form_for :post_comment, url: user_post_comment_path(@comment_owner,@comment) , method: :patch do |f| %>
+
+    <p>
+        <%= f.label :username, "Your name" %>
+        <%= f.text_field :username %>
+    </p>
+
+    <p>
+        <%= f.label :body, "Your comment" %>
+        <%= f.text_area :body, class: "wide-text-area"  %>
+    </p>
+
+
+    <p>
+        <%= f.submit  ({:class => 'btn btn-primary'})%>
+    </p>
+<% end %>

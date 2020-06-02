@@ -1,0 +1,22 @@
+<% if current_user != @profile_owner %>
+
+    <div class="container">
+        <h5>Profile Views: <%= @profile_owner.view %></h5>
+        <h1>Welcome <%= current_user.name %> to <%= @profile_owner.name %>'s profile</h1>
+        <h3><%= @profile_owner.name %>'s <%= link_to "POSTS" , user_posts_path(@profile_owner, @post)%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "All Users", users_path %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "All Posts", posts_path %> </h3>
+
+    </div>
+
+<% else %>
+
+    <div class="container">
+        <h5>Profile Views: <%= @current_user.view %></h5>
+        <h1>Welcome <%= current_user.email %></h1>
+        <h5><%= link_to "My profile", user_path(current_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to "All Users", users_path %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "All Posts", posts_path %></h5><br />
+    </div>
+
+
+<% end  %>

@@ -1,0 +1,23 @@
+<h1>Total posts: <%= @posts.count %></h1>
+
+<% if @posts %>
+
+    <% @posts.each do |post| %>
+        <ul>
+        <li><%= link_to post.content, user_post_path(@user, post) %></li>
+        </ul>
+    <% end  %>
+<% else %>
+
+    <% if @posts.first.users.name != current_user %>
+        <h2>There is no post from this user</h2>
+    <% else  %>
+        <h2>You dont have any post yet</h2>
+    <% end %>
+
+<% end  %>
+
+<h4><%= link_to "Create Post", new_user_post_path(current_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "All Users", users_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "All Posts", posts_path %>
+</h4>

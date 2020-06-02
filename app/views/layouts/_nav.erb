@@ -1,0 +1,21 @@
+<div class="container">
+    <% if user_signed_in?%>
+
+         <br /> <br /> <br /> <br /> <br /> <br /> <br />
+        <p><%= link_to "My Profile", user_path(current_user) %>
+        &nbsp;&nbsp;&nbsp;<%= link_to "My posts", user_posts_path(current_user) %>
+        &nbsp;&nbsp;&nbsp;<%= link_to "Edit account info", edit_user_registration_path %>
+        &nbsp;&nbsp;&nbsp;<%= link_to "Sign out", destroy_user_session_path , method: :delete %>
+        &nbsp;&nbsp;&nbsp;current user:<%= link_to current_user.name , user_path(current_user) %> </p>
+        <br />
+
+    <% else %>
+         <br /> <br /> <br />
+        <li><%= link_to "Sign in ", new_user_session_path  %></li>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <li><%= link_to "Sign in with Github", user_github_omniauth_authorize_path %></li>
+        <li><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></li>
+    <% end  %>
+
+
+</div>

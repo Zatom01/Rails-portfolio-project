@@ -1,0 +1,25 @@
+<h1>Here are all existing posts from Users</h1>
+
+
+
+<% @all_users.each do |user| %>
+    <% if user.name %>
+        <p><%= link_to user.name.upcase, user_path(user) %>'s posts count : <%= user.posts.count %></p>
+        <% user.posts.each do |post| %>
+            <ul>
+                <li><%= link_to post.content, user_post_path(user,post)  %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=post.created_at.to_datetime.strftime("%A, %b %d at %I:%M%p")%>
+ </li>
+            </ul>
+
+        <% end %>
+    <% else  %>
+        <p><%= link_to user.email.upcase, user_path(user) %>'s posts count : <%= user.posts.count %></p>
+        <% user.posts.each do |post| %>
+            <ul>
+                <li><%= link_to post.content, user_post_path(user,post) %></li>
+            </ul>
+
+        <% end %>
+    <% end %>
+
+<% end  %>

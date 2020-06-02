@@ -1,0 +1,10 @@
+<h1>Create Post</h1>
+
+<%= form_for ([@user, @user.posts.build]) do |f| %>
+    <p>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    </p>
+
+    <%= f.submit "Create", {:class => 'btn btn-primary'}%>
+<% end  %>

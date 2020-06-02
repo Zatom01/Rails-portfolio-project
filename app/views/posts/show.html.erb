@@ -1,0 +1,57 @@
+
+<div class="comment">
+    <h1><%= @post.content %></h1>
+</div>
+<h6> <%=@post.created_at.to_datetime.strftime("%A, %b %d at %I:%M%p")%>
+ by <%= @post_owner.name %></h6> <br />
+
+<h3>Comments</h3>
+<% @post.post_comments.each do |comment| %>
+    <div class="post-comment">
+
+        <h5><%= link_to comment.body, user_post_comment_path(comment.user,comment) %>-------------
+        <%= comment.username %></h5>
+    </div>
+    <br />
+<% end  %>
+
+
+
+
+<h3><%= link_to "Comment", new_user_post_comment_path(current_user), :class => 'btn btn-success' %></h3>
+
+
+
+
+<% if @post_owner == current_user %>
+
+    <%= link_to "Edit", edit_user_post_path(@user,@post),:class => 'btn btn-primary' %>
+
+    <%= link_to "Delete", user_post_path(@user, @post), method: :delete, data: {confirm: 'Are you 200% sure?'},:class => 'btn btn-danger' %> <br /><br />
+
+    <%= link_to "All Users", users_path %> <br /><br />
+
+
+
+<% end  %>
+
+
+
+<%= form_for PostComment.new do |f| %>
+    <%= f.hidden_field 'post_id', value: @post.id %>
+
+    <p>
+        <%= f.label :username, "Name" %>
+        <%= f.text_field :username %>
+    </p>
+
+    <p>
+        <%= f.label :body, "Your comment" %>
+        <%= f.text_area :body, class: "wide-text-area"  %>
+    </p>
+
+
+    <p>
+        <%= f.submit  ({:class => 'btn btn-primary'})%>
+    </p>
+<% end %>

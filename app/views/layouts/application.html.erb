@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProducersBlog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+
+  <body>
+
+    <style>
+
+       .post {
+        background-color: greenyellow;
+        color: black;
+        margin: 2px;
+        padding: 20px;
+        display: inline-block
+
+      }
+
+      .comment {
+        background-color: darkgrey;
+        color: white;
+        margin: 2px;
+        padding: 20px;
+        display: inline-block
+
+      }
+
+      .post-comment {
+        background-color: cyan;
+        color: black;
+        margin: 2px;
+        padding: 20px;
+        display: inline-block
+
+      }
+
+      .wide-text-area{
+        width:100%;
+      }
+
+
+    </style>
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" <%= link_to "Users List", users_path %>></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" <%= link_to "HOME", url: '/' %>><span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+
+    <body>
+        <% flash.keys.each do |type| %>
+          <div data-alert class="flash <%= type %> alert-box radius">
+
+            <a href="." class="close">&times;</a>
+          </div>
+        <% end %>
+    <script>
+      function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+        h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+      }
+      function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+      }
+  </script>
+    <div class="wrapper">
+
+
+  <div class="container">
+    <p><%= render 'layouts/messages' %><p>
+
+    <%= yield %>
+
+  </div>
+  </body>
+  <footer>
+    <%= render 'layouts/nav' %>
+    <div class="container">
+        <small>&copy; 2020 <strong>Producer-blog</strong></small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%=Time.parse((Time.new-100).to_s).strftime("%A, %b %d")%> Pacific Daylight Time<br>
+        <body onload="startTime()"><br>
+        Time : <div id="txt" ></div>
+
+      </div>
+    </div>
+  </footer>
+</html>

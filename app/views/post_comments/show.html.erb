@@ -1,0 +1,11 @@
+<h1>Post Comment</h1>
+
+<div class="post-comment">
+   <h2> <%= @comment.body %>&nbsp;&nbsp;&nbsp;
+
+   <% if @commenter==current_user %>
+        <%= link_to "Edit post", edit_user_post_comment_path(@comment),:class => 'btn btn-primary'  %>
+        <%= link_to "Delete", user_post_comment_path(@comment.user,@comment), method: :delete,
+            data: {confirm: 'Are you 200% sure?'},:class => 'btn btn-danger' %></h2>
+    <% end  %>
+</div>

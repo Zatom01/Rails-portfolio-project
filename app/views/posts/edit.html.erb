@@ -1,0 +1,12 @@
+<h1>Edit Post</h1>
+
+<%= form_for :post, url: user_post_path(@user, @post), method: :patch do |f| %>
+    <p>
+        <%= f.label :content %>
+        <%= f.text_field :content %>
+    </p>
+
+    <p>
+    <%= f.submit "Update", {:class => 'btn btn-primary'}%>
+    </p>
+<% end  %>
