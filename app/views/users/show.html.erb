@@ -3,9 +3,23 @@
     <div class="container">
         <h5>Profile Views: <%= @profile_owner.view %></h5>
         <h1>Welcome <%= current_user.name %> to <%= @profile_owner.name %>'s profile</h1>
-        <h3><%= @profile_owner.name %>'s <%= link_to "POSTS" , user_posts_path(@profile_owner, @post)%>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "All Users", users_path %>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "All Posts", posts_path %> </h3>
+
+        <% if !@profile_owner.posts.count == 0 %>
+
+            <h5>Here are <%= @profile_owner.name %>'s posts<h5>
+            <%@profile_owner.posts.each do |post| %>
+            <ul>
+                <li><h5><%= link_to post.content, user_post_path(@profile_owner,post) %></h5></li>
+            </ul>
+            <% end  %>
+
+        <% else %>
+            <h5><%= @profile_owner.name %> doesnot have any posts yet</h5>
+        <% end  %>
+
+
+
+         </h3>
 
     </div>
 
@@ -14,8 +28,14 @@
     <div class="container">
         <h5>Profile Views: <%= @current_user.view %></h5>
         <h1>Welcome <%= current_user.email %></h1>
-        <h5><%= link_to "My profile", user_path(current_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <%= link_to "All Users", users_path %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "All Posts", posts_path %></h5><br />
+        <h5>Here are your posts<h5>
+        <%current_user.posts.each do |post| %>
+            <ul>
+                <li><h5><%= link_to post.content, user_post_path(current_user,post) %></h5></li>
+            </ul>
+        <% end  %>
+
+        <br />
     </div>
 
 

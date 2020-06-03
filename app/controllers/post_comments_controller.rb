@@ -3,7 +3,7 @@ class PostCommentsController < ApplicationController
   end
 
   def new
-    byebug
+
     @post=Post.find_by_id(params[:format])
     @post_owner=User.find_by_id(@post.users.ids.first)
     @commenter=current_user
@@ -23,7 +23,7 @@ class PostCommentsController < ApplicationController
 
     @post_comment.save
 
-    redirect_to user_post_comment_path(@post_owner, @post_comment)
+    redirect_to user_post_comment_path(current_user, @post_comment)
 
   end
 
@@ -32,6 +32,7 @@ class PostCommentsController < ApplicationController
     @commenter= current_user
     @comment= PostComment.find(params[:id])
     @post=@comment.post
+
 
 
   end

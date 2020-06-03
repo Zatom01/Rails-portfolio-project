@@ -5,7 +5,7 @@
 </div>
 
 
-<%= form_for ([@post_owner,@post_owner.post_comments.create]) do |f| %>
+<%= form_for ([@post_owner,@post_owner.post_comments.build]) do |f| %>
     <%= f.hidden_field 'post_id', value: @post.id %>
 
     <p>

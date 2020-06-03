@@ -18,7 +18,7 @@
 
 
 
-<h3><%= link_to "Comment", new_user_post_comment_path(current_user), :class => 'btn btn-success' %></h3>
+<h3><%= link_to "Comment", new_user_post_comment_path(current_user,@post), method: 'GET', :class => 'btn btn-success' %></h3>
 
 
 
