@@ -1,14 +1,14 @@
 <div class="container">
     <% if user_signed_in?%>
 
-         <br /> <br /> <br /> <br /> <br /> <br /> <br />
-        <p><%= link_to "My Profile", user_path(current_user) %>
+         <br /> <br /> <br /> <br />
+        <p id="light_green"><%= link_to "My Profile", user_path(current_user) %>
         &nbsp;&nbsp;&nbsp;<%= link_to "My posts", user_posts_path(current_user) %>
         &nbsp;&nbsp;&nbsp;<%= link_to "All Users", users_path %>
         &nbsp;&nbsp;&nbsp;<%= link_to "All Posts", posts_path %>
         &nbsp;&nbsp;&nbsp;<%= link_to "Edit account info", edit_user_registration_path %>
         &nbsp;&nbsp;&nbsp;<%= link_to "Sign out", destroy_user_session_path , method: :delete %>
-        &nbsp;&nbsp;&nbsp;current user:<%= link_to current_user.name , user_path(current_user) %> </p>
+        &nbsp;&nbsp;&nbsp;current user:<%= link_to current_user.name , user_path(current_user) %></p>
         <br />
 
     <% else %>

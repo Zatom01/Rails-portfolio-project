@@ -15,7 +15,7 @@ class PostCommentsController < ApplicationController
   def create
 
     @post=Post.find(params[:post_comment][:post_id])
-    @post_owner=User.find_by_id(@post.users.ids.first)
+    # @post_owner=User.find_by_id(@post.user)
     # @commenter=current_user
 
     @post_comment= current_user.post_comments.build(post_comment_params)
@@ -64,8 +64,7 @@ class PostCommentsController < ApplicationController
     @comment=PostComment.find(params[:id])
     @comment_owner=@comment.user
     @comment_post=@comment.post
-    @comment.destroy
-
+    @comment.delete
     redirect_to user_posts_path(@comment_owner,@comment_post)
 
   end

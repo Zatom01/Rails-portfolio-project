@@ -7,13 +7,6 @@
         <li><%= link_to post.content, user_post_path(@user, post) %></li>
         </ul>
     <% end  %>
-<% else %>
-
-    <% if @posts.first.users.name != current_user %>
-        <h2>There is no post from this user</h2>
-    <% else  %>
-        <h2>You dont have any post yet</h2>
-    <% end %>
 
 <% end  %>
 

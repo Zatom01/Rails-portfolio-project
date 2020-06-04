@@ -3,8 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github, :google_oauth2]
 
-  has_many :post_comments, :dependent => :destroy
-  has_many :posts, through: :post_comments
+  has_many :posts
+  has_many :post_comments ,:dependent => :destroy
+  has_many :commented_posts, through: :post_comments, source: :post
+  # has_many :posts, through: :post_comments, dependent: :delete_all
 
   has_many :movie_comments, :dependent => :destroy
   has_many :movies, through: :movie_comments
@@ -12,6 +14,7 @@ class User < ApplicationRecord
 
 
   scope :famous_users, -> {where("view > ?", 20)}
+
 
 
   def self.in_age(age)

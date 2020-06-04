@@ -6,39 +6,45 @@
  by <%= @post_owner.name %></h6> <br />
 
 <h3>Comments</h3>
-<% @post.post_comments.each do |comment| %>
-    <div class="post-comment">
 
-        <h5><%= link_to comment.body, user_post_comment_path(comment.user,comment) %>-------------
-        <%= comment.username %></h5>
-    </div>
-    <br />
-<% end  %>
+<% if @post.post_comments.count == 0 %>
+    <h5>There are no comments for this post yet. Wana be first? </h5>
+
+<% else %>
+
+    <% @post.post_comments.each do |comment| %>
+        <div class="post-comment">
+            <h5><%= link_to comment.body, user_post_comment_path(comment.user,comment) %>-------------
+            <%= comment.username %></h5>
+        </div>
+        <br />
+    <% end %>
 
 
+<% end %>
 
 
-<h3><%= link_to "Comment", new_user_post_comment_path(current_user,@post), method: 'GET', :class => 'btn btn-success' %></h3>
+<br/>
 
 
 
 
 <% if @post_owner == current_user %>
 
-    <%= link_to "Edit", edit_user_post_path(@user,@post),:class => 'btn btn-primary' %>
+    <%= link_to "Edit", edit_user_post_path(@user,@post),:class => 'btn btn-primary' %>&nbsp;&nbsp;&nbsp;
 
     <%= link_to "Delete", user_post_path(@user, @post), method: :delete, data: {confirm: 'Are you 200% sure?'},:class => 'btn btn-danger' %> <br /><br />
 
-    <%= link_to "All Users", users_path %> <br /><br />
+
 
 
 
 <% end  %>
 
 
-
-<%= form_for PostComment.new do |f| %>
-    <%= f.hidden_field 'post_id', value: @post.id %>
+<br/>
+<%= form_for @post.post_comments.build do |f| %>
+    <%= f.hidden_field :post_id, value: @post.id %>
 
     <p>
         <%= f.label :username, "Name" %>

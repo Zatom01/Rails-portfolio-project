@@ -36,6 +36,13 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def famous_user
+    @famous_user_ar_relation = User.famous_users
+    @famous_user=User.find_by_id(@famous_user_ar_relation.first.id)
+    @views=@famous_user.view
+
+  end
+
   private
 
   def user_params
