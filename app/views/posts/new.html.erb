@@ -1,9 +1,17 @@
 <h1>Create Post</h1>
 
-<%= form_for ([@user, @user.posts.build]) do |f| %>
+<% if @post.errors.any? %>
+   <p id="red"><%= @post.errors.full_messages.to_sentence %></p>
+
+<% end  %>
+
+
+<%= form_for ([@user, @post]) do |f| %>
+
+
     <p>
-    <%= f.label :content %>
-    <%= f.text_field :content %>
+        <%= f.label :content %>
+        <%= f.text_field :content %>
     </p>
 
     <%= f.submit "Create", {:class => 'btn btn-primary'}%>

@@ -10,27 +10,35 @@ class PostsController < ApplicationController
 
   def new
     @user=User.find(params[:user_id])
+    @post=@user.posts.build
+
+
+
 
   end
 
   def create
 
     @user=User.find(params[:user_id])
-    @post=@user.posts.create(post_params)
-    if !@post.content.nil?
-      @post.save
+    @post=@user.posts.build(post_params)
+    if @post.save
+      redirect_to user_post_path(@user, @post)
     else
       render :new
     end
-
-    redirect_to user_post_path(@user, @post)
-
   end
 
   def show
 
-    @user=User.find(params[:user_id])
+    # @user=User.find(params[:user_id])
     @post=Post.find(params[:id])
+    if User.find(params[:user_id])== @post.user
+      @user= User.find(params[:user_id])
+    else
+      @user=@post.user
+
+    end
+
     @user_posts=@user.posts
     @post_owner=@user
     @post_comments=@post.post_comments

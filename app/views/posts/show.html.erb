@@ -43,11 +43,14 @@
 
 
 <br/>
+
+<h2 id="red"> <%= flash[:error] %> </h2>
+
 <%= form_for @post.post_comments.build do |f| %>
     <%= f.hidden_field :post_id, value: @post.id %>
 
     <p>
-        <%= f.label :username, "Name" %>
+        <%= f.label :username, "Display Name" %>
         <%= f.text_field :username %>
     </p>
 
@@ -57,7 +60,6 @@
     </p>
 
 
-    <p>
-        <%= f.submit  ({:class => 'btn btn-primary'})%>
-    </p>
+    <%= f.submit  ({:class => 'btn btn-primary'})%>
+
 <% end %>

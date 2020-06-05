@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
 
 
-  scope :famous_users, -> {where("view > ?", 20)}
+  scope :famous_users, -> {where("view > ?", 50)}
 
 
 

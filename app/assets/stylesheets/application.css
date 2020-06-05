@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ div.field_with_errors{
+    text-align: center;
+    color: red;
+
+ }

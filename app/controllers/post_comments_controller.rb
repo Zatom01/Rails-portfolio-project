@@ -4,9 +4,10 @@ class PostCommentsController < ApplicationController
 
   def new
 
-    @post=Post.find_by_id(params[:format])
-    @post_owner=User.find_by_id(@post.users.ids.first)
-    @commenter=current_user
+    # @post=Post.find_by_id(params[:format])
+    # @post_owner=User.find_by_id(@post.users.ids.first)
+    # @commenter=current_user
+    # @post_comment=@post.post_comment.build
 
   end
 
@@ -14,17 +15,23 @@ class PostCommentsController < ApplicationController
 
   def create
 
+
     @post=Post.find(params[:post_comment][:post_id])
     # @post_owner=User.find_by_id(@post.user)
     # @commenter=current_user
 
     @post_comment= current_user.post_comments.build(post_comment_params)
     # @commenter.post_comments << @post_comment
+    if @post_comment.valid?
 
-    @post_comment.save
+      @post_comment.save
+      @user=@post.user
 
-    redirect_to user_post_comment_path(current_user, @post_comment)
-
+      redirect_to user_post_comment_path(current_user, @post_comment)
+    else
+      flash[:error]="Display Name and Your Comment can't be blank"
+      redirect_to user_post_path(current_user,@post)
+    end
   end
 
   def show
