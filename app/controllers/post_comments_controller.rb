@@ -3,12 +3,6 @@ class PostCommentsController < ApplicationController
   end
 
   def new
-
-    # @post=Post.find_by_id(params[:format])
-    # @post_owner=User.find_by_id(@post.users.ids.first)
-    # @commenter=current_user
-    # @post_comment=@post.post_comment.build
-
   end
 
 
@@ -17,11 +11,9 @@ class PostCommentsController < ApplicationController
 
 
     @post=Post.find(params[:post_comment][:post_id])
-    # @post_owner=User.find_by_id(@post.user)
-    # @commenter=current_user
 
     @post_comment= current_user.post_comments.build(post_comment_params)
-    # @commenter.post_comments << @post_comment
+
     if @post_comment.valid?
 
       @post_comment.save
@@ -36,10 +28,13 @@ class PostCommentsController < ApplicationController
 
   def show
 
-    @commenter= current_user
-    @comment= PostComment.find(params[:id])
-    @post=@comment.post
+    # @post_owner= User.find(params[:user_id])
 
+
+    @comment= PostComment.find(params[:id])
+    @commenter= @comment.user
+    @post=@comment.post
+    @post_owner=@post.user
 
 
   end

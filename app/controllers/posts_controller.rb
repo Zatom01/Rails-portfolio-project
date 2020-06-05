@@ -12,9 +12,6 @@ class PostsController < ApplicationController
     @user=User.find(params[:user_id])
     @post=@user.posts.build
 
-
-
-
   end
 
   def create
@@ -30,7 +27,6 @@ class PostsController < ApplicationController
 
   def show
 
-    # @user=User.find(params[:user_id])
     @post=Post.find(params[:id])
     if User.find(params[:user_id])== @post.user
       @user= User.find(params[:user_id])
@@ -42,8 +38,6 @@ class PostsController < ApplicationController
     @user_posts=@user.posts
     @post_owner=@user
     @post_comments=@post.post_comments
-
-
 
   end
 

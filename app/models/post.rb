@@ -7,17 +7,4 @@ class Post < ApplicationRecord
     validates :content, presence: :true
 
 
-    # has_many :users, through: :post_comments, dependent: :delete_all
-
-
-
-
-
-
-
-
-
-
-
-
 end

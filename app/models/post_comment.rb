@@ -6,9 +6,4 @@ class PostComment < ApplicationRecord
   validates :body, presence: :true
 
 
-
-  def self.all_comments_counts
-    all.count
-  end
-
 end

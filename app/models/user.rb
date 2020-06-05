@@ -6,10 +6,6 @@ class User < ApplicationRecord
   has_many :posts
   has_many :post_comments ,:dependent => :destroy
   has_many :commented_posts, through: :post_comments, source: :post
-  # has_many :posts, through: :post_comments, dependent: :delete_all
-
-  has_many :movie_comments, :dependent => :destroy
-  has_many :movies, through: :movie_comments
 
 
 
