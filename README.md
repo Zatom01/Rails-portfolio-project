@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a blog application with User, Post and PostComment Model. 
 
-Things you may want to cover:
+User has many posts and many post comments. 
+Post belongs to a user and has many post comments.
+Post comments belongs to user and a post.
+User has many commented posts through post comments.
+Post has many users who commented through post comments.
 
-* Ruby version
+Created with Rails 6.0.3.1
 
-* System dependencies
+In your terminal copy "git clone https://github.com/Zatom01/Rails-portfolio-project.git"
 
-* Configuration
+Go inside the project folder and run "rails s"
 
-* Database creation
+Go to http://localhost:3000/ to view the running application where you can Signup and create Post/Comments.
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
